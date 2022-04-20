@@ -123,13 +123,17 @@ var NumberKey = (function (_super) {
     };
     return NumberKey;
 }(Button));
-var myCalculator;
+var calculators;
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    myCalculator = new Calculator(100, 100);
+    calculators = [
+        new Calculator(0, 50),
+        new Calculator(200, 50),
+        new Calculator(400, 50),
+    ];
 }
 function draw() {
     background(255);
-    myCalculator.draw();
+    calculators.forEach(function (cal) { return cal.draw(); });
 }
 //# sourceMappingURL=build.js.map
