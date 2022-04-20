@@ -1,25 +1,13 @@
 //Here we declare the variables
-const buttonsValues:string[] = [
-  '7', '8', '9', 'x',
-  '4', '5', '6', '-',
-  '1', '2', '3', '+',
-  '0', '.', '/', '='
-]
-
-const buttons: Button[] = [];
-
+let myCalculator: Calculator;
 
 function setup() {
   //Here we initialize the variables
-  createCanvas(windowWidth, windowHeight)
-  for (let i = 0; i < 4; i++) {
-    for (let j = 0; j < 4; j++) {
-      buttons.push(new Button(buttonsValues[j + (i*4)], j * 50, i* 50))
-    }
-    
-  }
+  createCanvas(windowWidth, windowHeight);
+  myCalculator = new Calculator(100,100);
 }
 
 function draw() {
-  background(255, 0, 255);
+  background(255);
+  myCalculator.draw();
 }
