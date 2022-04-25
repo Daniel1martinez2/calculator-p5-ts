@@ -3,7 +3,12 @@ class NumberKey extends Button{
     super(display, value, posX, posY);
   }
   action():void{
-    this.display.setValue = this.display.getValue + this.value;
+    const currentValue = this.display.getValue
+    if(currentValue !== 'error'){
+      this.display.setValue = currentValue + this.value;
+    }else{
+      this.display.setValue = this.value;
+    }
   };
 
   defineColor():string{

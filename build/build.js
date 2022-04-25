@@ -51,7 +51,6 @@ var Calculator = (function () {
 var Display = (function () {
     function Display(posX, posY) {
         this.value = '';
-        this.result = 0;
         this.posX = posX;
         this.posY = posY;
     }
@@ -60,9 +59,6 @@ var Display = (function () {
         rect(this.posX, this.posY, 180, 40);
         fill(0);
         text(this.value, this.posX + 10, this.posY + 25);
-    };
-    Display.prototype.showResult = function () {
-        console.log(this.value);
     };
     Object.defineProperty(Display.prototype, "getValue", {
         get: function () {
@@ -99,7 +95,15 @@ var EqualKey = (function (_super) {
         return _super.call(this, display, value, posX, posY) || this;
     }
     EqualKey.prototype.action = function () {
-        this.display.setValue = eval(this.display.getValue);
+        var result;
+        try {
+            result = eval(this.display.getValue);
+        }
+        catch (error) {
+            console.log('ups');
+            result = 'error';
+        }
+        this.display.setValue = result;
     };
     EqualKey.prototype.defineColor = function () {
         return '#E04955';
@@ -115,7 +119,13 @@ var NumberKey = (function (_super) {
         return _super.call(this, display, value, posX, posY) || this;
     }
     NumberKey.prototype.action = function () {
-        this.display.setValue = this.display.getValue + this.value;
+        var currentValue = this.display.getValue;
+        if (currentValue !== 'error') {
+            this.display.setValue = currentValue + this.value;
+        }
+        else {
+            this.display.setValue = this.value;
+        }
     };
     ;
     NumberKey.prototype.defineColor = function () {

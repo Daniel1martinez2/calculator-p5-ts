@@ -3,7 +3,14 @@ class EqualKey extends Button{
     super(display, value, posX, posY);
   }
   action(): void {
-    this.display.setValue = eval(this.display.getValue);
+    let result: string;
+    try {
+      result = eval(this.display.getValue);
+    } catch (error:unknown) {
+      console.log('ups')
+      result = 'error';
+    }
+    this.display.setValue = result;
   }
   defineColor():string{
     return '#E04955'

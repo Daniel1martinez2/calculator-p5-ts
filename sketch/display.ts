@@ -5,7 +5,6 @@ class Display{
   posY: number;
   constructor(posX: number, posY: number){
     this.value = '';
-    this.result = 0;
     this.posX = posX;
     this.posY = posY;
   }
@@ -14,10 +13,6 @@ class Display{
     rect(this.posX, this.posY, 180, 40);
     fill(0)
     text(this.value, this.posX + 10, this.posY + 25);
-  }
-
-  showResult(){
-    console.log(this.value)
   }
   public get getValue(){
     return this.value;
